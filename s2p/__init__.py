@@ -44,6 +44,7 @@ from s2p import ply
 from s2p import triangulation
 from s2p import fusion
 from s2p import visualisation
+from s2p import thesis_additions
 
 
 def pointing_correction(tile, i):
@@ -624,6 +625,14 @@ def main(user_cfg, start_from=0):
         print('7) computing global DSM...')
         global_dsm(tiles)
     common.print_elapsed_time()
+    
+    # New additions by Arne
+    if start_from <= 8:
+        print('8) Generating big ply file')
+        thesis_additions.create_big_ply_file(cfg["out_dir"])
+    
+    if start_from <= 9:
+        print('9) Generating 3D model')
 
     # cleanup
     common.garbage_cleanup()
